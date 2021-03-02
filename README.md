@@ -1,4 +1,4 @@
-# fastfingers-node
+# Overview
 Backend APIs for Fastfingers React Frontend
 
 # Directory Structure
