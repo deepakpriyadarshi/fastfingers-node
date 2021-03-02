@@ -5,7 +5,7 @@ Backend APIs for Fastfingers React Frontend
 
 ```
 
-**fastfingers-node**
+fastfingers-node
 |
 |__ controllers
 |   |-- player.controller
