@@ -127,6 +127,8 @@ const getPlayerDetails = (request, response) => {
         
         if(status === 'success')
         {
+            delete data.password;
+            
             return response.status(200).json({
                 status: 'success',
                 message: 'Player Details Found',

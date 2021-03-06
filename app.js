@@ -5,11 +5,13 @@ const app = express();
 const cors = require('cors');
 
 const playerRouter = require('./routers/player.router');
+const scoreRouter = require('./routers/score.router');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/fastfingers/api/player', playerRouter);
+app.use('/fastfingers/api/score', scoreRouter);
 
 app.get('/fastfingers/api', (request, response) => {
     response.json({
