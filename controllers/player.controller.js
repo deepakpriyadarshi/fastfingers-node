@@ -92,7 +92,8 @@ const registerPlayer = (request, response) => {
     
     playerData.hashedPassword = hashedPassword;
     
-    addPlayer(playerData, (status, data) => {
+    // Check If Player Already Registered
+    findPlayer(playerData, (status, data) => {
         
         if(status === 'error')
         {
@@ -103,12 +104,47 @@ const registerPlayer = (request, response) => {
             });
         }
         
-        return response.status(200).json({
-            status: 'success',
-            message: 'Player Registered Successfully',
+        if(status === 'exists')
+        {
+            return response.status(200).json({
+                status: 'exists',
+                message: 'Player Already Registered'
+            });
+        }
+        
+    });
+    
+    // Register Player
+    addPlayer(playerData, (newPlayerStatus, newPlayerData) => {
+        
+        if(newPlayerStatus === 'error')
+        {
+            return response.status(500).json({
+                status: 'error',
+                message: 'Some Unexpected Error Happened',
+                error: newPlayerData
+            });
+        }
+        
+        // Find Registered Player
+        findPlayer(playerData, (status, data) => {
+            
+            delete data.password;
+            
+            const jsonToken = sign({ data: data }, process.env.JSON_WEBTOKEN_SECRET, {
+                expiresIn: "1h"
+            });
+                
+            return response.status(200).json({
+                status: 'success',
+                message: 'Player Registered Successfully',
+                token: jsonToken
+            });
+            
         });
         
     });
+    
 };
 
 const getPlayerDetails = (request, response) => {

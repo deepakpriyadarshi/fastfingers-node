@@ -3,7 +3,7 @@ const pool = require('../utils/database');
 const findPlayerStats = (playerData, callBackFunction) => {
     pool.query(
         `
-        SELECT COUNT(scoreID) AS totalGamePlayed, AVG(score) AS averageGameTime, MAX(score) AS bestScore
+        SELECT COUNT(scoreID) AS totalGamePlayed, IFNULL(AVG(score), 0) AS averageGameTime, IFNULL(MAX(score), 0) AS bestScore
         FROM scores
         WHERE playerID = ?
         `,
