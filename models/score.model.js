@@ -26,4 +26,25 @@ const findPlayerStats = (playerData, callBackFunction) => {
     );
 };
 
+const addPlayerScore = (playerData, callBackFunction) => {
+    pool.query(
+        `
+        INSERT INTO scores(playerID, score) VALUES(?, ?)
+        `,
+        [
+            playerData.playerID,
+            playerData.score
+        ],
+        (error, results, fields) => {
+            if(error)
+            {
+                return callBackFunction('error', error);
+            }
+            
+            return callBackFunction('success', null);
+        }
+    );
+};
+
 module.exports.findPlayerStats = findPlayerStats;
+module.exports.addPlayerScore = addPlayerScore;
