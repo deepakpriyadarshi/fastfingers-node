@@ -8,13 +8,16 @@ Backend APIs for Fastfingers React Frontend
 fastfingers-node
 |
 |__ controllers
-|   |-- player.controller
+|   |-- player.controller.js
+|   |-- score.controller.js
 |
 |__ models
-|   |-- player.model
+|   |-- player.model.js
+|   |-- score.model.js
 |
 |__ routers
-|   |-- player.router
+|   |-- player.router.js
+|   |-- score.router.js
 |
 |__ utils
 |   |-- database.js
