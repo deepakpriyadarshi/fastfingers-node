@@ -46,5 +46,29 @@ const addPlayerScore = (playerData, callBackFunction) => {
     );
 };
 
+const findPlayerScores = (playerData, callBackFunction) => {
+    pool.query(
+        `
+        SELECT * FROM scores 
+        WHERE playerID = ? 
+        ORDER BY scoreID DESC
+        LIMIT 5 OFFSET ? ;
+        `,
+        [
+            playerData.playerID,
+            playerData.page
+        ],
+        (error, results, fields) => {
+            if(error)
+            {
+                return callBackFunction('error', error);
+            }
+            
+            return callBackFunction('success', results);
+        }
+    );
+};
+
 module.exports.findPlayerStats = findPlayerStats;
 module.exports.addPlayerScore = addPlayerScore;
+module.exports.findPlayerScores = findPlayerScores;
