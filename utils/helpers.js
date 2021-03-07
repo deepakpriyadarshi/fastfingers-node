@@ -10,7 +10,7 @@ const verifyToken = (request, response, next) => {
         verify(token, process.env.JSON_WEBTOKEN_SECRET, (error, tokenData) => {
             if(error)
             {
-                response.status(400).json({
+                response.status(500).json({
                     status: 'invalid',
                     message: 'Invalid Token' 
                 });
@@ -25,7 +25,7 @@ const verifyToken = (request, response, next) => {
     }
     else
     {
-        response.status(400).json({
+        response.status(500).json({
             status: 'missing',
             message: 'Authorization Header / Data Is Missing'
         });

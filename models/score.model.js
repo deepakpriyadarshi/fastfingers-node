@@ -52,7 +52,7 @@ const findPlayerScores = (playerData, callBackFunction) => {
         SELECT * FROM scores 
         WHERE playerID = ? 
         ORDER BY scoreID DESC
-        LIMIT 5 OFFSET ? ;
+        LIMIT 15 OFFSET ? ;
         `,
         [
             playerData.playerID,

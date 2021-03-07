@@ -65,7 +65,7 @@ const authenticatePlayer = (request, response) => {
                 delete data.password;
                 
                 const jsonToken = sign({ data: data }, process.env.JSON_WEBTOKEN_SECRET, {
-                    expiresIn: "1h"
+                    expiresIn: "10h"
                 });
                 
                 return response.status(200).json({

@@ -92,7 +92,7 @@ const savePlayerGameScore = (request, response) => {
 const getPlayerScores = (request, response) => {
     let playerData = request.tokenData.data;
     
-    playerData.page = request.body.page * 5;
+    playerData.page = request.body.page * 15;
     
     findPlayer(playerData, (status, data) => {
         
